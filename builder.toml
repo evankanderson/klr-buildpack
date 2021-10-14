@@ -1,0 +1,14 @@
+# Buildpacks to include in the builder
+[[buildpacks]]
+uri = "docker://ekanderson/klr-buildpack:0.0.4"
+
+[[order]]
+
+[[order.group]]
+id = "ekanderson/klr-buildpack"
+version = "0.0.4"
+
+[stack]
+id = "io.buildpacks.stacks.bionic"
+run-image = "docker.io/paketobuildpacks/run:base-cnb"
+build-image = "docker.io/paketobuildpacks/build:base-cnb"

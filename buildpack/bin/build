@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+layers_dir="$1"
+env_dir="$2/env"
+plan_path="$3"
+
+packages="$layers_dir/klr"
+
+mkdir "$packages"
+# We don't want to install new packages in $packages, because we want to use
+# the same layer as `pip install`
+# export PYTHONUSERBASE="$packages"
+# 
+# pip install --compile --user --disable-pip-version-check "http-containerize>=0.4.2"
+
+echo "launch = true" > "${packages}.toml"
+
+imgdir="$(dirname $0)"
+
+mkdir "$packages/bin"
+cp "$imgdir/aws-custom-runtime" "$packages/bin"
+cp "$imgdir"/python/* "$packages"
+
+# Append to PYTHONPATH
+mkdir "$packages/env"
+echo -n "$packages" > "$packages/env/PYTHONPATH.prepend"
+echo -n ":" > "$packages/env/PYTHONPATH.delim"
+echo -n "." > "$packages/env/PYTHONPATH.append"
+echo -n "lambda_function.lambda_handler" > "$packages/env/_HANDLER.override"
+echo -n "$packages" > "$packages/env/LAMBDA_TASK_ROOT.override"
+
+# Set the startup command to run the `framework` module.
+cat > "$layers_dir/launch.toml" <<EOF
+[[processes]]
+type = "web"
+command = "$packages/bin/aws-custom-runtime"
+EOF
+
+exit 0

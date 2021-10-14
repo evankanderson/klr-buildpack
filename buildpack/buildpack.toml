@@ -1,0 +1,16 @@
+# Build in this directory via:
+#
+# pack buildpack package ekanderson/klr-addin:0.1.0 --publish
+
+api = "0.5"
+
+[buildpack]
+  id = "ekanderson/klr-addin"
+  version = "0.1.0"
+  name = "Packaging Knative Lambda Runtime from TriggerMesh for kn func"
+
+[metadata]
+  include-files = ["bin/build", "bin/detect", "bin/aws-custom-runtime", "bin/python/bootstrap", "bin/python/bootstrap.py", "bin/python/lambda_runtime_client.py"]
+
+[[stacks]]
+  id = "io.buildpacks.stacks.bionic"

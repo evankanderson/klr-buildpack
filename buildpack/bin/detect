@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+plan=$2
+
+cat >$plan <<EOF
+[[provides]]
+name = "klr-framework"
+
+
+[[requires]]
+name = "cpython"
+
+[requires.metadata]
+build = true
+launch = true
+
+[[requires]]
+name = "klr-framework"
+
+EOF
+
+echo "TODO: actual dection."
+echo "Assuming function framework..."
+
+exit 0
