@@ -1,10 +1,5 @@
 builders:
   default: ekanderson/klr-builder:0.0.4
 # Use the default Knative TCP port probes
-lifecycle:
-  livenessProbe: {}
-  readinessProbe: {}
-# Try to reduce the probes, since the AWS runtime only processes POST
-healthEndpoints:
-  liveness: "/"
-  readiness: "/"
+lifecycle: {}
+
