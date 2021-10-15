@@ -30,6 +30,8 @@ echo -n ":" > "$packages/env/PYTHONPATH.delim"
 echo -n "." > "$packages/env/PYTHONPATH.append"
 echo -n "lambda_function.lambda_handler" > "$packages/env/_HANDLER.override"
 echo -n "$packages" > "$packages/env/LAMBDA_TASK_ROOT.override"
+# aws-custom-runtime by default listens on 80, which requires elevated permissions.
+echo -n "6000" > "$packages/env/INTERNAL_API_PORT.override"
 
 # Set the startup command to run the `framework` module.
 cat > "$layers_dir/launch.toml" <<EOF

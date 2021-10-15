@@ -10,14 +10,3 @@ from bootstrap import main
 
 if __name__ == '__main__':
     main()
-
-
-
-#!/bin/sh
-
-#echo "PATH: $PATH"
-#echo "PWD: $PWD"
-#env
-#/layers/paketo-buildpacks_cpython/cpython/bin/python3 "$LAMBDA_TASK_ROOT/bootstrap.py"
-
-#cat >/dev/null <<EOF
