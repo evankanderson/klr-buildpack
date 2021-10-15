@@ -6,12 +6,12 @@ This work is largely derived from https://github.com/triggermesh/aws-custom-runt
 
 # Using with `kn func`
 
-There is a pre-built copy of this builder at `docker.io/ekanderson/klr-builder:0.0.4`. If you want to use this pre-built copy, all you need to do is copy the `repositories` directory into `~/.config/func` (or wherever the `--repositories` flag of `kn func help create` points). Note that you may need a `kn func` **built from head**.
+There is a pre-built copy of this builder at `docker.io/ekanderson/klr-builder:0.0.4`. These directions assume you want to use that builder, rather than building your own (see below for build-your-own instructions). Note that you may need a `kn func` **with https://github.com/knative-sandbox/kn-plugin-func/pull/591**.
 
 Once you have the templates in the local func repositories, you can run the following commands to get started:
 
 ```shell
-kn func create -l aws-python -t klr/http a-demo
+kn func create a-demo -l aws-python -r https://github.com/evankanderson/klr-buildpack
 ```
 
 This will create a directory called `a-demo` which contains your function code. You can `cd` into it and then run:
